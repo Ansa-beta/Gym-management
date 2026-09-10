@@ -1,6 +1,5 @@
 import streamlit as st
-from gym_views import DbConnect,GymMemberManager
-connection_instance=DbConnect()
+from gym_views import GymMemberManager
 member_instance=GymMemberManager()
 
 tab1,tab2=st.tabs(["ADD","VIEW"])
@@ -9,9 +8,9 @@ with tab1:
     name=st.text_input("Enter member name: ")
     place=st.text_input("Enter place: ")
     mobile_no=st.text_input("Enter mobile number: ")
-    plan=st.text_input("Enter plan: ")
+    plan=st.selectbox("Choose your plan: ",["1 months","2 months","3 months","4 months"])
     fee=st.text_input("Enter fee: ")
-    joined_date=st.text_input("Enter joined date: ")
+    joined_date=st.date_input("Enter joined date(YYYY-MM-DD): ")
     if st.button("Add new member"):
         member_instance.post(name=name,place=place,mobile_no=mobile_no,plan=plan,fee=fee,joined_date=joined_date)
         st.success("New member added successfully!!!")
